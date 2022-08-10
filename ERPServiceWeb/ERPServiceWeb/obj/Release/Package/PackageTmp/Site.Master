@@ -1,0 +1,229 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="ERPServiceWeb.SiteMaster" %>
+
+<%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="cc1" %>
+<!DOCTYPE html>
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> ERP Service Web</title>
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link href="css/stylesheet_family.css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet" />
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+</head>
+<body id="page-top">
+    <form runat="server">
+        <cc1:ToolkitScriptManager ID="toolScriptManageer1" runat="server"></cc1:ToolkitScriptManager>
+        <%-- <asp:ScriptManager runat="server">
+            <Scripts>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="respond" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+            </Scripts>
+        </asp:ScriptManager>--%>
+
+        <div id="wrapper">
+            <!-- Sidebar -->
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-content-center" href="../Dashboard/ERPDashboard.aspx"><b>DC-Bank</b></a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0" />
+
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item active">
+                    <a class="nav-link" href="../DC_Bank/CreateAccount.aspx">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span> Create accounts </span></a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="../DC_Bank/Deposit.aspx">
+                        <i class="fas fa-fw fa-signal"></i>
+                        <span>Deposit</span></a>
+                </li>
+                 <li class="nav-item active">
+                    <a class="nav-link" href="../DC_Bank/TransferMoney.aspx">
+                        <i class="fas fa-fw fa-signal"></i>
+                        <span>Transfer money</span></a>
+                </li>
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </ul>
+            <!-- End of Sidebar -->
+
+            <!-- Content Wrapper -->
+            <div id="content-wrapper" class="d-flex flex-column">
+
+                <!-- Main Content -->
+                <div id="content">
+                    <!-- Topbar -->
+                    <nav class="navbar navbar-expand navbar-light topbar mb-4 static-top shadow" style="background-color: #4e73df">
+
+                        <div class="col-xl-2 col-md-1">
+                            <div class="card h-80">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: black;"><b>today signals</b></div>
+                                    <div class="h9 mb-0 font-weight-bold text-gray-800">
+                                        <span id="spn_signalcount" runat="server"></span>
+                                        <span class="col-auto" style="text-align: right;"><i class="col-auto fas fa-signal fa-2x text-primary"></i></span>
+                                    </div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-md-1">
+                            <div class="card h-80">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: black;"><b>today success</b></div>
+                                    <div class="h9 mb-0 font-weight-bold text-gray-800"><span id="spn_SuccessSignalCount" runat="server"></span><span class="col-auto" style="text-align: right;"><i class="col-auto fas fa-signal fa-2x text-warning"></i></span></div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <%-- <div class="col-xl-2 col-md-1">
+                            <div class="card h-40">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1">New User</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800">366</div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <span class="text-success mr-2"><i class="fas fa-arrow-up"></i>20.4%</span>
+                                        <span>Since last years</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>--%>
+                        <div class="col-xl-2 col-md-1">
+                            <div class="card h-80">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: black;"><b>today failure</b></div>
+                                    <div class="h9 mb-0 font-weight-bold text-gray-800"><span id="spn_FailureSignalCount" runat="server"></span><span class="col-auto" style="text-align: right;"><i class="col-auto fas fa-signal fa-2x text-danger"></i></span></div>
+
+                                    <div class="mt-2 mb-0 text-muted text-xs col-auto">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-md-1">
+                            <div class="card h-80">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: black;"><b>Pending Requests</b></div>
+                                    <div class="h9 mb-0 font-weight-bold text-gray-800"><span id="spa_3" runat="server">18</span><span class="col-auto" style="text-align: right;"> <i class="col-auto fas fa-comments  fa-2x text-warning"></i></span></div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-2 col-md-1">
+                            <div class="card h-80">
+                                <div class="col mr-2">
+                                    <div class="text-xs font-weight-bold text-uppercase mb-1" style="color: black;"><b>Pending Requests</b></div>
+                                    <div class="h9 mb-0 font-weight-bold text-gray-800"><span id="spn_4" runat="server">18</span><span class="col-auto" style="text-align: right;"> <i class="col-auto fas fa-comments  fa-2x text-warning"></i></span></div>
+                                    <div class="mt-2 mb-0 text-muted text-xs">
+                                        <div class="text-xs font-weight-bold text-uppercase mb-1"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Right side User ID displaying -->
+                        <ul class="navbar-nav ml-auto">
+                            <span class="mr-2 d-none d-lg-inline text-gray-600 small"><b style="color: #ffffff">User ID :
+                                <asp:Label ID="lbl_userid" Style="color: #ffffff" runat="server"></asp:Label></b></span>
+                            <%-- <img height="30px" class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">--%>
+                        </ul>
+                    </nav>
+                    <!-- End of Topbar -->
+
+                    <!-- Begin Page Content -->
+                    <div class="container-fluid">
+                        <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                        </asp:ContentPlaceHolder>
+                    </div>
+                    <!-- /.container-fluid -->
+                </div>
+                <!-- End of Main Content -->
+
+                <!-- Footer -->
+                <%--    <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Western Digital 2019</span>
+                        </div>
+                    </div>
+                </footer>--%>
+                <!-- End of Footer -->
+            </div>
+            <!-- End of Content Wrapper -->
+
+            <!-- Scroll to Top Button-->
+            <button onclick="topFunction()" id="myBtn" title="Go to top" style="height: 40px; padding-top: 9px;">^ </button>
+        </div>
+        <!-- End of Page Wrapper -->
+
+        <!-- Bootstrap core JavaScript-->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+        <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <!-- Core plugin JavaScript-->
+        <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+        <!-- Custom scripts for all pages-->
+        <script src="../js/sb-admin-2.min.js"></script>
+
+        <script>
+            //Get the button
+            var mybutton = document.getElementById("myBtn");
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function () { scrollFunction() };
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
+                }
+            }
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0;
+                document.documentElement.scrollTop = 0;
+            }
+
+            // When the user clicks on the button, Menu Hide & Show
+            $(document).ready(function () {
+                $('#sidebarToggle').click(function (e) {
+                    e.preventDefault();
+                    //$('#accordionSidebar').toggle('slow');
+                    $('#accordionSidebar').width(6.6);
+                });
+            });
+        </script>
+    </form>
+</body>
+</html>

@@ -1,0 +1,58 @@
+﻿body {
+}
+.Grid {
+    border-radius:10px;
+    border: 1px solid #1C6EA4;
+    background-color: #EEEEEE;
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+    .Grid td {
+        border: 1px solid #AAAAAA;
+        padding: 3px 2px;
+        font-size:x-small;
+        color:black;
+        font-weight:bold;
+    }
+    .Grid th {
+        font-family: Calibri;
+        color: #333;
+        text-align: center;
+        line-height: 25px;
+        border-radius: inherit;
+        border-left: solid 1px #525252;
+        font-size: 0.9em;
+        width: 200px;
+        padding: 9px;
+        background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #CDDBE4), to(#FFFFFF));
+    }
+    .Grid .pgr {
+        background: #363670 url(Images/grid-pgr.png) repeat-x top;
+    }
+        .Grid .pgr table {
+            margin: 3px 0;
+        }
+        .Grid .pgr td {
+            border-width: 0;
+            padding: 0 6px;
+            border-left: solid 1px #666;
+            font-weight: bold;
+            color: #fff;
+            line-height: 12px;
+        }
+    .Grid .tr:hover {
+        background-color: Red;
+    }
+    .Grid .tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+    .Grid .pgr a {
+        color: Gray;
+        text-decoration: none;
+    }
+        .Grid .pgr a:hover {
+            color: #000;
+            text-decoration: none;
+        }
+
